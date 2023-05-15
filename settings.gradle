@@ -14,3 +14,16 @@ dependencyResolutionManagement {
 }
 rootProject.name = "umbrella rental service project"
 include ':app'
+include ':network'
+include ':firebase'
+include ':usecase'
+include ':model'
+include ':viewmodel'
+include ':di'
+include ':feature-map'
+include ':repository'
+include ':datasource'
+include ':entity'
+include ':repositoryImpl'
+include ':feature-map2'
+include ':feature-home'
