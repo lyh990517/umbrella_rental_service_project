@@ -17,14 +17,21 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination
@@ -59,6 +66,37 @@ fun CardItemTemplate(navHostController: NavHostController, itemTitle: String, de
             }
         }
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun InputBar(modifier: Modifier) {
+    val state = rememberSaveable {
+        mutableStateOf(String())
+
+    }
+    OutlinedTextField(
+        value = state.value,
+        onValueChange = { state.value = it },
+        modifier = modifier
+            .background(Color.White),
+        keyboardActions = KeyboardActions(onSearch = {
+        }),
+        keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Search)
+    )
+}
+
+@Composable
+fun TitleBar(title: String) {
+    Spacer(modifier = Modifier.padding(vertical = 30.dp))
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        Text(text = title, fontSize = 40.sp)
+    }
+}
+
+@Composable
+fun VerticalSpacer(padding: Int) {
+    Spacer(modifier = Modifier.padding(vertical = padding.dp))
 }
 
 @Composable
@@ -113,21 +151,26 @@ fun TopMenu(navHostController: NavHostController) {
             painter = painterResource(id = R.drawable.qr_code_scanner),
             contentDescription = "qr"
         )
-        Card(border = BorderStroke(2.dp, Color.Black)) {
-            Box(
-                Modifier
-                    .wrapContentSize()
-                    .background(Color(LocalContext.current.getColor(R.color.main)))
-            ) {
-                Column() {
-                    Text(
-                        modifier = Modifier
-                            .padding(5.dp)
-                            .clickable {
-                                navHostController.navigate("Info")
-                            }, text = "내정보"
-                    )
-                }
+        DefaultCardButton(navHostController = navHostController, content = "내정보")
+    }
+}
+
+@Composable
+fun DefaultCardButton(navHostController: NavHostController, content: String) {
+    Card(border = BorderStroke(2.dp, Color.Black)) {
+        Box(
+            Modifier
+                .wrapContentSize()
+                .background(Color(LocalContext.current.getColor(R.color.main)))
+        ) {
+            Column() {
+                Text(
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .clickable {
+                            navHostController.navigate("Info")
+                        }, text = content
+                )
             }
         }
     }
