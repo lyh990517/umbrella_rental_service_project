@@ -25,12 +25,9 @@ fun LostExtendScreen(navHostController: NavHostController) {
             Text(text = "연장신청/분실신고", fontSize = 40.sp)
         }
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
-        CardItemTemplate(navHostController, "연장신청", "")
+        CardItemTemplate(navHostController, "연장신청", "extend")
         Spacer(modifier = Modifier.padding(vertical = 10.dp))
-        CardItemTemplate(navHostController, "분실신고", "")
-    }
-    BackHandler {
-        navHostController.popBackStack()
+        CardItemTemplate(navHostController, "분실신고", "lost")
     }
 }
 

@@ -1,4 +1,4 @@
-package com.example.feature_review
+package com.example.lost
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
@@ -19,9 +19,9 @@ import com.example.screen_util.TitleBar
 import com.example.screen_util.VerticalSpacer
 
 @Composable
-fun ReviewScreen(navHostController: NavHostController) {
+fun LostScreen(navHostController: NavHostController){
     ScreenTemplate(navHostController = navHostController) {
-        TitleBar(title = "리뷰 작성")
+        TitleBar(title = "분실신고")
         VerticalSpacer(padding = 10)
         InputBar(
             Modifier
@@ -43,8 +43,11 @@ fun ReviewScreen(navHostController: NavHostController) {
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp), horizontalArrangement = Arrangement.End
         ) {
-            DefaultCardButton(navHostController = navHostController, content = "작성하기")
+            DefaultCardButton(navHostController = navHostController, content = "제출하기")
         }
         VerticalSpacer(padding = 10)
+    }
+    BackHandler {
+        navHostController.popBackStack()
     }
 }

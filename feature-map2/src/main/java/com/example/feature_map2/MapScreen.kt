@@ -47,8 +47,4 @@ fun MapScreen(navHostController: NavHostController) {
             contentDescription = ""
         )
     }
-    BackHandler {
-        navHostController.popBackStack()
-    }
-
 }

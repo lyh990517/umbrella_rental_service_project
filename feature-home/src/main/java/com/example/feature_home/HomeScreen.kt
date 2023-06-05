@@ -33,7 +33,6 @@ fun HomeScreen(navController: NavHostController = rememberNavController()) {
     ScreenTemplate(navHostController = navController) {
         ImageView()
     }
-
 }
 
 
