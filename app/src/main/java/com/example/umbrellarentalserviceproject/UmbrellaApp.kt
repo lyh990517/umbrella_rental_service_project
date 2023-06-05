@@ -6,6 +6,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.feature_home.HomeScreen
+import com.example.feature_lost_extend_home.LostExtendScreen
+import com.example.feature_map2.MapScreen
+import com.example.feature_review.ReviewScreen
 
 @Composable
 fun UmbrellaApp(navController:NavHostController = rememberNavController()){
@@ -17,7 +20,7 @@ fun UmbrellaApp(navController:NavHostController = rememberNavController()){
 
         }
         composable("lostExtendHome"){
-
+            LostExtendScreen(navHostController = navController)
         }
         composable("lost"){
 
@@ -26,10 +29,10 @@ fun UmbrellaApp(navController:NavHostController = rememberNavController()){
 
         }
         composable("map"){
-
+            MapScreen(navHostController = navController)
         }
         composable("review"){
-
+            ReviewScreen(navHostController = navController)
         }
         composable("detail"){
 
