@@ -35,7 +35,7 @@ fun HomeScreen(navController: NavHostController = rememberNavController()) {
             .background(color = Color(LocalContext.current.getColor(R.color.main))),
         verticalArrangement = Arrangement.Bottom
     ) {
-        TopMenu()
+        TopMenu(navController)
         ImageView()
         Spacer(modifier = Modifier.padding(vertical = 70.dp))
         BottomNav(navController)
@@ -46,25 +46,6 @@ fun HomeScreen(navController: NavHostController = rememberNavController()) {
 
 }
 
-@Composable
-fun TopMenu() {
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 20.dp)
-            .height(40.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Image(
-            modifier = Modifier.size(30.dp),
-            painter = painterResource(id = R.drawable.qr_code_scanner),
-            contentDescription = "qr"
-        )
-        Card(border = BorderStroke(2.dp, Color.Black)) {
-            Text(modifier = Modifier.padding(5.dp), text = "내정보")
-        }
-    }
-}
 
 @Composable
 fun ImageView() {
@@ -78,6 +59,31 @@ fun ImageView() {
     )
 }
 
+@Composable
+fun TopMenu(navHostController: NavHostController) {
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp)
+            .height(40.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Image(
+            modifier = Modifier.size(30.dp),
+            painter = painterResource(id = R.drawable.qr_code_scanner),
+            contentDescription = "qr"
+        )
+        Card(border = BorderStroke(2.dp, Color.Black)) {
+            Text(
+                modifier = Modifier
+                    .padding(5.dp)
+                    .clickable {
+                        navHostController.navigate("Info")
+                    }, text = "내정보"
+            )
+        }
+    }
+}
 @Composable
 fun BottomNav(navController: NavHostController) {
     Row(
@@ -106,7 +112,6 @@ fun BottomNavPreview() {
 @Preview
 @Composable
 fun TopMenuPreview() {
-    TopMenu()
 }
 
 
