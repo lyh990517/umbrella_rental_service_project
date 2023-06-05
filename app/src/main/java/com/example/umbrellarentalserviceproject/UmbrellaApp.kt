@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.feature_detail.DetailScreen
+import com.example.feature_detail.SyncCardScreen
 import com.example.feature_extend.ExtendScreen
 import com.example.feature_find_pw.FindIdScreen
 import com.example.feature_find_pw.FindPasswordScreen
@@ -45,8 +46,8 @@ fun UmbrellaApp(navController: NavHostController = rememberNavController()) {
         composable("detail") {
             DetailScreen(navHostController = navController)
         }
-        composable("sync"){
-
+        composable("sync") {
+            SyncCardScreen(navHostController = navController)
         }
         composable("login") {
             LoginScreen(navHostController = navController)
