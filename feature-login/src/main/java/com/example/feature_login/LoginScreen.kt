@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.screen_util.BottomNav
-import com.example.screen_util.DefaultCardButton
 import com.example.screen_util.InputBar
 import com.example.screen_util.LongCardButton
 import com.example.screen_util.ScreenTemplate
