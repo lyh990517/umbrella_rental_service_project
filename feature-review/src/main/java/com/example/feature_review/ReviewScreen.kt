@@ -43,7 +43,7 @@ fun ReviewScreen(navHostController: NavHostController) {
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp), horizontalArrangement = Arrangement.End
         ) {
-            DefaultCardButton(navHostController = navHostController, content = "작성하기")
+            DefaultCardButton(navHostController = navHostController, content = "작성하기", "")
         }
         VerticalSpacer(padding = 10)
     }

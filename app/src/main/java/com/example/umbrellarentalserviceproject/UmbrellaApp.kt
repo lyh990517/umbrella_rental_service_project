@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.feature_extend.ExtendScreen
 import com.example.feature_home.HomeScreen
 import com.example.feature_info.InfoScreen
+import com.example.feature_login.LoginScreen
 import com.example.feature_lost_extend_home.LostExtendScreen
 import com.example.feature_map2.MapScreen
 import com.example.feature_review.ReviewScreen
@@ -41,9 +42,12 @@ fun UmbrellaApp(navController: NavHostController = rememberNavController()) {
 
         }
         composable("login") {
-
+            LoginScreen(navHostController = navController)
         }
         composable("findPw") {
+
+        }
+        composable("findId") {
 
         }
         composable("signup") {

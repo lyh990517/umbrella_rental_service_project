@@ -70,12 +70,13 @@ fun CardItemTemplate(navHostController: NavHostController, itemTitle: String, de
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InputBar(modifier: Modifier) {
+fun InputBar(modifier: Modifier, hint: String = "") {
     val state = rememberSaveable {
         mutableStateOf(String())
 
     }
     OutlinedTextField(
+        placeholder = { Text(text = hint) },
         value = state.value,
         onValueChange = { state.value = it },
         modifier = modifier
@@ -151,16 +152,24 @@ fun TopMenu(navHostController: NavHostController) {
             painter = painterResource(id = R.drawable.qr_code_scanner),
             contentDescription = "qr"
         )
-        DefaultCardButton(navHostController = navHostController, content = "내정보")
+        DefaultCardButton(
+            navHostController = navHostController,
+            content = "내정보",
+            destination = "login"
+        )
     }
 }
 
 @Composable
-fun DefaultCardButton(navHostController: NavHostController, content: String) {
+fun DefaultCardButton(
+    navHostController: NavHostController,
+    content: String,
+    destination: String,
+    modifier: Modifier = Modifier
+) {
     Card(border = BorderStroke(2.dp, Color.Black)) {
         Box(
-            Modifier
-                .wrapContentSize()
+            modifier
                 .background(Color(LocalContext.current.getColor(R.color.main)))
         ) {
             Column() {
@@ -168,7 +177,7 @@ fun DefaultCardButton(navHostController: NavHostController, content: String) {
                     modifier = Modifier
                         .padding(10.dp)
                         .clickable {
-                            navHostController.navigate("Info")
+                            navHostController.navigate(destination)
                         }, text = content
                 )
             }
@@ -177,21 +186,65 @@ fun DefaultCardButton(navHostController: NavHostController, content: String) {
 }
 
 @Composable
-fun BottomNav(navController: NavHostController) {
+fun LongCardButton(
+    navHostController: NavHostController,
+    content: String,
+    destination: String,
+    modifier: Modifier = Modifier
+) {
+    Card(
+        border = BorderStroke(2.dp, Color.Black), modifier = Modifier
+            .padding(
+                horizontal = 20.dp
+            )
+            .height(50.dp)
+            .clickable {
+                navHostController.navigate(destination)
+            }
+    ) {
+        Box(
+            modifier
+                .fillMaxSize()
+        ) {
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    modifier = Modifier
+                        .padding(10.dp), text = content
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun BottomNav(
+    navController: NavHostController,
+    item1: String = "대여소 \n 현황",
+    item2: String = "연장\n/분실",
+    item3: String = "리뷰\n작성",
+    destination1: String = "map",
+    destination2: String = "lostExtendHome",
+    destination3: String = "review"
+) {
     Row(
         Modifier
             .fillMaxWidth()
             .padding(bottom = 50.dp),
         horizontalArrangement = Arrangement.SpaceAround
     ) {
-        Text(text = "대여소 \n 현황", fontSize = 18.sp, modifier = Modifier.clickable {
-            navController.navigate("map")
+        Text(text = item1, fontSize = 18.sp, modifier = Modifier.clickable {
+            navController.navigate(destination1)
         })
-        Text(text = "연장\n/분실", fontSize = 18.sp, modifier = Modifier.clickable {
-            navController.navigate("lostExtendHome")
+        Text(text = item2, fontSize = 18.sp, modifier = Modifier.clickable {
+            navController.navigate(destination2)
         })
-        Text(text = "리뷰\n작성", fontSize = 18.sp, modifier = Modifier.clickable {
-            navController.navigate("review")
+        Text(text = item3, fontSize = 18.sp, modifier = Modifier.clickable {
+            navController.navigate(destination3)
         })
     }
 }
+

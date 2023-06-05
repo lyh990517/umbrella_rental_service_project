@@ -19,7 +19,7 @@ import com.example.screen_util.TitleBar
 import com.example.screen_util.VerticalSpacer
 
 @Composable
-fun LostScreen(navHostController: NavHostController){
+fun LostScreen(navHostController: NavHostController) {
     ScreenTemplate(navHostController = navHostController) {
         TitleBar(title = "분실신고")
         VerticalSpacer(padding = 10)
@@ -43,7 +43,7 @@ fun LostScreen(navHostController: NavHostController){
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp), horizontalArrangement = Arrangement.End
         ) {
-            DefaultCardButton(navHostController = navHostController, content = "제출하기")
+            DefaultCardButton(navHostController = navHostController, content = "제출하기", "")
         }
         VerticalSpacer(padding = 10)
     }
