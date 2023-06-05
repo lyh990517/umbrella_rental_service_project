@@ -6,6 +6,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,7 +35,7 @@ fun CardItemTemplate(navHostController: NavHostController, itemTitle: String, de
     Card(
         Modifier
             .fillMaxWidth()
-            .height(100.dp)
+            .height(70.dp)
             .padding(horizontal = 20.dp)
             .clickable {
                 navHostController.navigate(destination)
@@ -41,12 +43,20 @@ fun CardItemTemplate(navHostController: NavHostController, itemTitle: String, de
             .background(Color(LocalContext.current.getColor(R.color.main))),
         border = BorderStroke(2.dp, Color.Black),
     ) {
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxSize()
+        Box(
+            Modifier
+                .fillMaxSize()
+                .background(Color(LocalContext.current.getColor(R.color.main)))
         ) {
-            Text(text = itemTitle, fontSize = 40.sp)
+            Column() {
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Text(text = itemTitle, fontSize = 40.sp)
+                }
+            }
         }
     }
 }
@@ -71,7 +81,15 @@ fun ScreenTemplate(
                 .padding(horizontal = 20.dp),
             border = BorderStroke(2.dp, color = Color.Black)
         ) {
-            content()
+            Box(
+                Modifier
+                    .fillMaxSize()
+                    .background(Color(LocalContext.current.getColor(R.color.main)))
+            ) {
+                Column() {
+                    content()
+                }
+            }
         }
         Spacer(modifier = Modifier.padding(vertical = 70.dp))
         BottomNav(navHostController)
@@ -96,13 +114,21 @@ fun TopMenu(navHostController: NavHostController) {
             contentDescription = "qr"
         )
         Card(border = BorderStroke(2.dp, Color.Black)) {
-            Text(
-                modifier = Modifier
-                    .padding(5.dp)
-                    .clickable {
-                        navHostController.navigate("Info")
-                    }, text = "내정보"
-            )
+            Box(
+                Modifier
+                    .wrapContentSize()
+                    .background(Color(LocalContext.current.getColor(R.color.main)))
+            ) {
+                Column() {
+                    Text(
+                        modifier = Modifier
+                            .padding(5.dp)
+                            .clickable {
+                                navHostController.navigate("Info")
+                            }, text = "내정보"
+                    )
+                }
+            }
         }
     }
 }

@@ -36,11 +36,11 @@ fun InfoScreen(navHostController: NavHostController) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
             Text(text = "홍길동님 안녕하세요.", fontSize = 40.sp)
         }
-        Spacer(modifier = Modifier.padding(vertical = 30.dp))
+        Spacer(modifier = Modifier.padding(vertical = 10.dp))
         CardItemTemplate(navHostController, "상세정보", "")
-        Spacer(modifier = Modifier.padding(vertical = 30.dp))
+        Spacer(modifier = Modifier.padding(vertical = 10.dp))
         CardItemTemplate(navHostController, "결제연동", "")
-        Spacer(modifier = Modifier.padding(vertical = 30.dp))
-        CardItemTemplate(navHostController, "결제연동", "")
+        Spacer(modifier = Modifier.padding(vertical = 10.dp))
+        CardItemTemplate(navHostController, "로그아웃", "")
     }
 }
